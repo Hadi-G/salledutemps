@@ -9,12 +9,12 @@ var Redirect = require('react-router').Redirect
 
 
 class LoginForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange1 = this.handleChange1.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
-    this.state ={email : '', password : '', value:'' };
+    this.state ={email : '', password : '', loginConfirm: this.props.loginConfirm };
   }
   handleChange1(event){
     this.setState({email : event.target.value});
@@ -31,7 +31,8 @@ class LoginForm extends React.Component {
           }).then(function(obj) {
 
             if(obj == 'isLog'){
-              appObj.setState({value:'loginComfirm'});
+              appObj.setState({loginConfirm:true});
+              appObj.props.onIncreaseSubmit(true);
             } else {
               if(obj == 'error'){
                 alert('email ou mot de passe invalide');
@@ -53,7 +54,7 @@ class LoginForm extends React.Component {
 
   render() {
     var redirection = '';
-    if(this.state.value == 'loginComfirm'){
+    if(this.state.loginConfirm == true){
       var redirection = <Redirect to='/profile' />;
     }
 

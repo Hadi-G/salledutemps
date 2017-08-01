@@ -9,7 +9,7 @@ var createStore =  require('redux').createStore;
 var Provider    =  require('react-redux').Provider;
 
 var RegisterForm = require("./RegisterForm.js");
-var LoginForm = require("./LoginForm.js");
+var LoginFormRedux = require("./LoginFormRedux.js");
 var Title = require('./Title.js');
 var Objectif = require('./Objectif.js');
 var Succes = require('./Succes.js');
@@ -46,17 +46,29 @@ class App extends React.Component {
 
 
 
+function counterReducer(state, action) {
+  if(action.type == 'loginConfirm') {
+      return { login: action.login }
+  } else {
+      return state;
+  }
+}
+
+const store = createStore(counterReducer, {login:false});
+
 
 ReactDOM.render(
-  <Router>
-    <div>
-      <Route exact path='/' component={App} />
-      <Route path='/succes' component={Succes} />
-      <Route path='/login' component={LoginForm} />
-      <Route path='/profile' component={Profile} />
-      <Route path='/rdv' component={RdvForm} />
-    </div>
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <div>
+        <Route exact path='/' component={App} />
+        <Route path='/succes' component={Succes} />
+        <Route path='/login' component={LoginFormRedux} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/rdv' component={RdvForm} />
+      </div>
+    </Router>
+  </Provider>
   ,
   document.getElementById('container')
 );
