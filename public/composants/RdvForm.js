@@ -34,12 +34,12 @@ class RdvForm extends React.Component {
     console.log(this.state.startDate._d);
     console.log(this.state.rdv);
     console.log(this.state.activite);
-   //Créer une route associer rdvForm
-    fetch('http://localhost:8080/ajax?date='+this.state.startDate._d+'&rdv='+this.state.rdv+'&activite='+this.state.activite, {
-  method: 'get'
-  }).then(function(response) {
-  }).catch(function(err) {
-  });
+    //Créer une route associer rdvForm
+    fetch('./rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite, {
+      method: 'get'
+      }).then(function(response) {
+      }).then(function(err) {
+      });
     event.preventDefault();
     this.setState({startDate : moment(), rdv:'', activite:''});
 }
@@ -59,6 +59,7 @@ class RdvForm extends React.Component {
                     </label>
                     <label>
                       <select onChange={this.hourChange}>
+                        <option value="Heure de rendez-vous"></option>
                         <option value="9H00">9H00</option><option value="9H30">9H30</option>
                         <option value="10H00">10H00</option><option value="10H30">10H30</option>
                         <option value="11H00">11H00</option><option value="11H30">11H30</option>
@@ -76,16 +77,17 @@ class RdvForm extends React.Component {
                     </label>
                     <label>
                       <select onChange={this.activityChange}>
-                        <option value="X-Body 1">X-Body 1</option>
-                        <option value="X-Body 2">X-Body 2</option>
+                        <option value="Activite"></option>
+                        <option value="X-Body1">X-Body 1</option>
+                        <option value="X-Body2">X-Body 2</option>
                         <option value="Elliptique">Elliptique</option>
-                        <option value="Monte marche">Monte marche</option>
+                        <option value="MonteMarche">Monte Marche</option>
                         <option value="Rameur">Rameur</option>
                       </select>
                     </label>
-                  <Link to="/profile" className="form-btn">
-                  Soumettre le rendez-vous
-                  </Link>
+                  <button type='submit' className="form-btn">
+                    Soumettre le rendez-vous
+                  </button>
                 </form>
             </div>
         </div>

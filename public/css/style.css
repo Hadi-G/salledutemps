@@ -96,7 +96,7 @@
 
 
 .img-profil{
-	background-image:url(/img/img3.jpg);
+	background-image:url(/img/img1.jpg);
 	background-size: cover;
  	border-radius: 50%;
 	width: 120px;
@@ -169,3 +169,12 @@
 
 }
 
+
+.rdvList {
+  margin-top: 80px;
+}
+
+
+.rdvNav{
+  font-size: 12px;
+}

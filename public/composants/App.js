@@ -33,7 +33,7 @@ class App extends React.Component {
             <span className="icon icon-home"></span>
             <span className="tab-label">Acceuil</span>
           </Link>
-          <Link className="tab-item" to="/profile">
+          <Link className="tab-item" to="/login">
             <span className="icon icon-person"></span>
             <span className="tab-label">Profil</span>
           </Link>
@@ -51,9 +51,10 @@ ReactDOM.render(
   <Router>
     <div>
       <Route exact path='/' component={App} />
-      <Route path='/succes' component={Succes}/>
-      <Route path='/profile' component={Profile}/>
-      <Route path='/rdv' component={RdvForm}/>
+      <Route path='/succes' component={Succes} />
+      <Route path='/login' component={LoginForm} />
+      <Route path='/profile' component={Profile} />
+      <Route path='/rdv' component={RdvForm} />
     </div>
   </Router>
   ,
