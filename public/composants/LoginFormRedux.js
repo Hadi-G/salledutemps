@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onIncreaseSubmit: function(info) { 
-        dispatch( {type: 'loginConfirm', login : info} ) 
+        dispatch( {type: 'loginConfirm', login : info.isLog, nom: info.nom, prenom:info.prenom} ) 
     }
   }
 }

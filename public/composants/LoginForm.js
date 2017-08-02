@@ -27,17 +27,18 @@ class LoginForm extends React.Component {
       fetch('http://localhost:8080/login?email='+this.state.email+'&password='+this.state.password, {
             method: 'get'
           }).then(function(response) {
-            return response.text();
+            return response.json();
           }).then(function(obj) {
 
-            if(obj == 'isLog'){
+            if(obj.isLog == true){
               appObj.setState({loginConfirm:true});
-              appObj.props.onIncreaseSubmit(true);
+              appObj.props.onIncreaseSubmit(obj);
+              
             } else {
-              if(obj == 'error'){
+              if(obj.error == 'invalide'){
                 alert('email ou mot de passe invalide');
               } else {
-                if(obj == 'signIn'){
+                if(obj.error == 'vide'){
                   alert('saisir email et mot de passe' );
                 }
               }

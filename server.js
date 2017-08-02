@@ -24,7 +24,9 @@ var userModel = mongoose.model('User', userSchema);
 var rdvSchema = mongoose.Schema({
   date: String,
   heure:String,
-  activite:String
+  activite:String,
+  nom: String,
+  prenom: String
 });
 var rdvModel = mongoose.model('Rdv', rdvSchema);
 
@@ -39,17 +41,26 @@ app.get('/', function(req, res){
 
 
 app.get('/login', function(req, res){
+  var response = {isLog: false, nom: null, prenom:null, error: null};
   if(req.query.email != '' && req.query.password != ''){
-    userModel.findOne({email:req.query.email, password:req.query.password}, function(err, users){
-      if(users != null){
-       res.send('isLog');
-     } else{
-       res.send('error');
-     }
+    userModel.findOne({email:req.query.email, password:req.query.password}, function(err, user){
+      if(user != null){
+       response.isLog   = true;
+       response.nom     = user.nom;
+       response.prenom  = user.prenom;
+      } else {
+        response.error    = "invalide";
+      }
+
+      res.send(JSON.stringify(response));
+
     });
   } else {
-      res.send('signIn');
+    response.error = "vide";
+    res.send(JSON.stringify(response));
   }
+
+
 });
 
 
@@ -59,7 +70,9 @@ app.get('/rdv', function(req, res){
     var rdv = new rdvModel ({
       date:req.query.date,
       heure:req.query.heure,
-      activite:req.query.activite
+      activite:req.query.activite,
+      prenom:req.query.prenom,
+      nom:req.query.nom
     });
     rdv.save(function (error, rdv){
 	});

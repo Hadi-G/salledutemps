@@ -14,7 +14,7 @@ var Title = require('./Title.js');
 var Objectif = require('./Objectif.js');
 var Succes = require('./Succes.js');
 var Profile = require('./Profile.js');
-var RdvForm = require('./RdvForm.js');
+var RdvFormRedux = require('./RdvFormRedux.js');
 
 
 class App extends React.Component {
@@ -48,13 +48,13 @@ class App extends React.Component {
 
 function counterReducer(state, action) {
   if(action.type == 'loginConfirm') {
-      return { login: action.login }
+      return { login: action.login, nom: action.nom, prenom:action.prenom}
   } else {
       return state;
   }
 }
 
-const store = createStore(counterReducer, {login:false});
+const store = createStore(counterReducer, {login:false, nom: null, prenom: null});
 
 
 ReactDOM.render(
@@ -65,7 +65,7 @@ ReactDOM.render(
         <Route path='/succes' component={Succes} />
         <Route path='/login' component={LoginFormRedux} />
         <Route path='/profile' component={Profile} />
-        <Route path='/rdv' component={RdvForm} />
+        <Route path='/rdv' component={RdvFormRedux} />
       </div>
     </Router>
   </Provider>
