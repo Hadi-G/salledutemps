@@ -15,18 +15,20 @@ var userSchema = mongoose.Schema({
     prenom: String,
     email: String,
     password: String,
-    confirmPassword: String
+    confirmPassword: String,
+    telephone:String
 });
 var userModel = mongoose.model('User', userSchema);
 
 
-//numero de telephone
+
 var rdvSchema = mongoose.Schema({
   date: String,
   heure:String,
   activite:String,
   nom: String,
-  prenom: String
+  prenom: String,
+  telephone:String
 });
 var rdvModel = mongoose.model('Rdv', rdvSchema);
 
@@ -41,13 +43,14 @@ app.get('/', function(req, res){
 
 
 app.get('/login', function(req, res){
-  var response = {isLog: false, nom: null, prenom:null, error: null};
+  var response = {isLog: false, nom: null, prenom:null, telephone: null, error: null};
   if(req.query.email != '' && req.query.password != ''){
     userModel.findOne({email:req.query.email, password:req.query.password}, function(err, user){
       if(user != null){
-       response.isLog   = true;
-       response.nom     = user.nom;
-       response.prenom  = user.prenom;
+       response.isLog      = true;
+       response.nom        = user.nom;
+       response.prenom     = user.prenom;
+       response.telephone  = user.telephone;
       } else {
         response.error    = "invalide";
       }
@@ -72,12 +75,13 @@ app.get('/rdv', function(req, res){
       heure:req.query.heure,
       activite:req.query.activite,
       prenom:req.query.prenom,
-      nom:req.query.nom
+      nom:req.query.nom,
+      telephone:req.query.telephone
     });
     rdv.save(function (error, rdv){
 	});
   }
-  	rdvModel.find(function (err, rdvList) {
+  	rdvModel.find({prenom:req.query.prenom, nom:req.query.nom}, function (err, rdvList) {
 	    res.send(JSON.stringify(rdvList));
 	});
 });

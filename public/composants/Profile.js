@@ -5,7 +5,7 @@ var Route = require('react-router-dom').Route
 var Link = require('react-router-dom').Link
 
 var Title = require('./Title.js');
-var Nav = require('./Nav.js');
+var NavRedux = require('./NavRedux.js');
 
 class Profile extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class Profile extends React.Component {
             <p>Chief Executive Officer  : Pierre Matthieu Louis<br/>
             Chief Technologie Officer : Willy Savetier</p>
           </div>
-            <Nav/>
+            <NavRedux/>
 
             <nav className="bar bar-tab">
               <Link className="tab-item" to="/">

@@ -48,13 +48,13 @@ class App extends React.Component {
 
 function counterReducer(state, action) {
   if(action.type == 'loginConfirm') {
-      return { login: action.login, nom: action.nom, prenom:action.prenom}
+      return { login: action.login, nom: action.nom, prenom:action.prenom, telephone:action.telephone}
   } else {
       return state;
   }
 }
 
-const store = createStore(counterReducer, {login:false, nom: null, prenom: null});
+const store = createStore(counterReducer, {login:false, nom: null, prenom: null, telephone: null});
 
 
 ReactDOM.render(

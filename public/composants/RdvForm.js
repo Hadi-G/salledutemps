@@ -6,12 +6,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 var Router = require('react-router-dom').BrowserRouter
 var Route = require('react-router-dom').Route
 var Link = require('react-router-dom').Link
-
+var Redirect = require('react-router').Redirect
 
 class RdvForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {startDate : moment(), rdv:'', activite:''};
+    this.state = {startDate : moment(), rdv:'', activite:'', redirect:''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.hourChange = this.hourChange.bind(this);
@@ -35,18 +35,27 @@ class RdvForm extends React.Component {
     console.log(this.state.rdv);
     console.log(this.state.activite);
     //Créer une route associer rdvForm
-    fetch('./rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom, {
+    fetch('./rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
       method: 'get'
       }).then(function(response) {
       }).then(function(err) {
       });
     event.preventDefault();
-    this.setState({startDate : moment(), rdv:'', activite:''});
+    this.setState({startDate : moment(), rdv:'', activite:'', redirect:true});
 }
 
   render() {
+
+    var redirection = '';
+    if(this.state.redirect == true){
+      redirection = <Redirect to='/profile'/>;
+    }
+
     return (
       <div>
+
+        {redirection}
+
         <header className="bar bar-nav">
             <Link className="icon icon-close pull-right" to="/profile"></Link>
             <h1 className="title">Rendez-vous</h1>
