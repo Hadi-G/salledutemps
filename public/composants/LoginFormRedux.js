@@ -9,14 +9,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIncreaseSubmit: function(info) { 
-        dispatch( {type: 'loginConfirm', login : info.isLog, nom: info.nom, prenom:info.prenom} ) 
+    onIncreaseSubmit: function(info) {
+        dispatch( {type: 'loginConfirm', login : info.isLog, nom: info.nom, prenom:info.prenom, telephone:info.telephone} )
     }
   }
 }
 
 var LoginFormRedux = connect(
-    mapStateToProps, 
+    mapStateToProps,
     mapDispatchToProps
 )(LoginForm);
 

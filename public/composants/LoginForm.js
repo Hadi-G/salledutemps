@@ -5,9 +5,6 @@ var Link = require('react-router-dom').Link
 var Title = require('./Title.js');
 var Redirect = require('react-router').Redirect
 
-
-
-
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +30,7 @@ class LoginForm extends React.Component {
             if(obj.isLog == true){
               appObj.setState({loginConfirm:true});
               appObj.props.onIncreaseSubmit(obj);
-              
+
             } else {
               if(obj.error == 'invalide'){
                 alert('email ou mot de passe invalide');
@@ -49,9 +46,6 @@ class LoginForm extends React.Component {
           this.setState({email:'', password:''});
 
         }
-
-
-
 
   render() {
     var redirection = '';
