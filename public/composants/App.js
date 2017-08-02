@@ -54,8 +54,7 @@ function counterReducer(state, action) {
   }
 }
 
-const store = createStore(counterReducer, {login:false, nom: null, prenom: null, telephone:null});
-
+const store = createStore(counterReducer, {login:false, nom: null, prenom: null, telephone: null});
 
 ReactDOM.render(
   <Provider store={store}>

@@ -4,7 +4,9 @@ var RdvForm = require("./RdvForm.js");
 
 
 function mapStateToProps(state) {
+
   return { nom: state.nom, prenom: state.prenom, telephone:state.telephone }
+
 }
 
 
