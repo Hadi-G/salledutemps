@@ -16,11 +16,7 @@ var userSchema = mongoose.Schema({
     email: String,
     password: String,
     confirmPassword: String,
-<<<<<<< HEAD
-    telephone: String
-=======
     telephone:String
->>>>>>> e340177ed7e5469dbf6010470afef823e10ecc32
 });
 var userModel = mongoose.model('User', userSchema);
 
@@ -32,11 +28,7 @@ var rdvSchema = mongoose.Schema({
   activite:String,
   nom: String,
   prenom: String,
-<<<<<<< HEAD
-  telephone: String
-=======
   telephone:String
->>>>>>> e340177ed7e5469dbf6010470afef823e10ecc32
 });
 var rdvModel = mongoose.model('Rdv', rdvSchema);
 
@@ -51,16 +43,6 @@ app.get('/', function(req, res){
 
 
 app.get('/login', function(req, res){
-<<<<<<< HEAD
-  var response = {isLog: false, nom: null, prenom:null, error: null, telephone: null};
-  if(req.query.email != '' && req.query.password != ''){
-    userModel.findOne({email:req.query.email, password:req.query.password}, function(err, user){
-      if(user != null){
-       response.isLog   = true;
-       response.nom     = user.nom;
-       response.prenom  = user.prenom;
-       response.telephone = user.telephone;
-=======
   var response = {isLog: false, nom: null, prenom:null, telephone: null, error: null};
   if(req.query.email != '' && req.query.password != ''){
     userModel.findOne({email:req.query.email, password:req.query.password}, function(err, user){
@@ -69,7 +51,6 @@ app.get('/login', function(req, res){
        response.nom        = user.nom;
        response.prenom     = user.prenom;
        response.telephone  = user.telephone;
->>>>>>> e340177ed7e5469dbf6010470afef823e10ecc32
       } else {
         response.error    = "invalide";
       }
