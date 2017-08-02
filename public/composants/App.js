@@ -1,9 +1,10 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var Router = require('react-router-dom').BrowserRouter
-var Route = require('react-router-dom').Route
-var Link = require('react-router-dom').Link
+var Router = require('react-router-dom').BrowserRouter;
+var Route = require('react-router-dom').Route;
+var Link = require('react-router-dom').Link;
+var Switch = require('react-router-dom').Switch;
 
 var createStore =  require('redux').createStore;
 var Provider    =  require('react-redux').Provider;
@@ -44,8 +45,6 @@ class App extends React.Component {
   }
 }
 
-
-
 function counterReducer(state, action) {
   if(action.type == 'loginConfirm') {
       return { login: action.login, nom: action.nom, prenom:action.prenom, telephone:action.telephone}
@@ -59,13 +58,14 @@ const store = createStore(counterReducer, {login:false, nom: null, prenom: null,
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div>
+      <Switch>
         <Route exact path='/' component={App} />
         <Route path='/succes' component={Succes} />
         <Route path='/login' component={LoginFormRedux} />
         <Route path='/profile' component={Profile} />
         <Route path='/rdv' component={RdvFormRedux} />
-      </div>
+        <Route component={App} />
+      </Switch>
     </Router>
   </Provider>
   ,
