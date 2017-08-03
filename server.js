@@ -9,6 +9,14 @@ var options = { server: { socketOptions: {connectTimeoutMS: 30000 } }};
 mongoose.connect('mongodb://savetier:Marcelino92@ds123193.mlab.com:23193/salledutemps', options , function(err) {
 });
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
+
 
 var userSchema = mongoose.Schema({
     nom: String,
@@ -89,7 +97,7 @@ app.get('/rdv', function(req, res){
 
 
 
-
-app.listen(8080, function () {
+var port = (process.env.PORT || 8080);
+app.listen(port, function (){
   console.log("Server listening on port 8080");
 });
