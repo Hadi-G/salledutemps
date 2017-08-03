@@ -41,7 +41,7 @@ class RdvForm extends React.Component {
       }).then(function(err) {
       });
     event.preventDefault();
-    this.setState({startDate : moment(), rdv:'', activite:'', redirect:true});
+    this.setState({startDate : moment().format('LLLL'), rdv:'', activite:'', redirect:true});
 }
 
   render() {

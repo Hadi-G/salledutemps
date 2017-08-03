@@ -49708,7 +49708,7 @@ var RdvForm = function (_React$Component) {
         method: 'get'
       }).then(function (response) {}).then(function (err) {});
       event.preventDefault();
-      this.setState({ startDate: (0, _moment2.default)(), rdv: '', activite: '', redirect: true });
+      this.setState({ startDate: (0, _moment2.default)().format('LLLL'), rdv: '', activite: '', redirect: true });
     }
   }, {
     key: 'render',
