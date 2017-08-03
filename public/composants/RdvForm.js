@@ -36,7 +36,7 @@ class RdvForm extends React.Component {
     console.log(this.state.activite);
     //Créer une route associer rdvForm
 
-    fetch('./rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
+    fetch(serverPath+'/rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
       method: 'get'
       }).then(function(response) {
       }).then(function(err) {

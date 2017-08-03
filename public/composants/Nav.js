@@ -10,7 +10,7 @@ class Nav extends React.Component {
 
   componentDidMount(){
     var myComponent = this;
-    fetch('./rdv?prenom='+this.props.prenom+"&nom="+this.props.nom, {
+    fetch(serverPath+'/rdv?prenom='+this.props.prenom+"&nom="+this.props.nom, {
         method: 'get'
     }).then(function(response) {
     	console.log("response :"+response);
@@ -19,7 +19,7 @@ class Nav extends React.Component {
         console.log(obj);
         myComponent.setState({
           rdvList: obj
-         });   
+         });
     });
   }
 

@@ -30,7 +30,7 @@ confirmPasswordChange(event){
   this.setState({confirmPassword :event.target.value});
 }
 handleSubmit(event){
-  fetch('http://localhost:8080/register?nom='+this.state.nom+'&prenom='+this.state.prenom+'&email='+this.state.email+'&password='+this.state.password+'&confirmPassword='+this.state.confirmPassword, {
+  fetch(serverPath+'/register?nom='+this.state.nom+'&prenom='+this.state.prenom+'&email='+this.state.email+'&password='+this.state.password+'&confirmPassword='+this.state.confirmPassword, {
 method: 'get'
 }).then(function(response) {
 }).catch(function(err) {

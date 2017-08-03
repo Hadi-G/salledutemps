@@ -48977,7 +48977,7 @@ var RegisterForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      fetch('http://localhost:8080/register?nom=' + this.state.nom + '&prenom=' + this.state.prenom + '&email=' + this.state.email + '&password=' + this.state.password + '&confirmPassword=' + this.state.confirmPassword, {
+      fetch(serverPath + '/register?nom=' + this.state.nom + '&prenom=' + this.state.prenom + '&email=' + this.state.email + '&password=' + this.state.password + '&confirmPassword=' + this.state.confirmPassword, {
         method: 'get'
       }).then(function (response) {}).catch(function (err) {});
       event.preventDefault();
@@ -49115,7 +49115,7 @@ var LoginForm = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
       var appObj = this;
-      fetch('http://localhost:8080/login?email=' + this.state.email + '&password=' + this.state.password, {
+      fetch(serverPath + '/login?email=' + this.state.email + '&password=' + this.state.password, {
         method: 'get'
       }).then(function (response) {
         return response.json();
@@ -49537,7 +49537,7 @@ var Nav = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       var myComponent = this;
-      fetch('./rdv?prenom=' + this.props.prenom + "&nom=" + this.props.nom, {
+      fetch(serverPath + '/rdv?prenom=' + this.props.prenom + "&nom=" + this.props.nom, {
         method: 'get'
       }).then(function (response) {
         console.log("response :" + response);
@@ -49709,7 +49709,7 @@ var RdvForm = function (_React$Component) {
       console.log(this.state.activite);
       //Créer une route associer rdvForm
 
-      fetch('./rdv?date=' + this.state.startDate._d + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
+      fetch(serverPath + '/rdv?date=' + this.state.startDate._d + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
         method: 'get'
       }).then(function (response) {}).then(function (err) {});
       event.preventDefault();

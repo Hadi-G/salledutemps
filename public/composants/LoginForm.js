@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
   }
   handleSubmit(event){
   var appObj = this;
-      fetch('http://localhost:8080/login?email='+this.state.email+'&password='+this.state.password, {
+      fetch(serverPath+'/login?email='+this.state.email+'&password='+this.state.password, {
             method: 'get'
           }).then(function(response) {
             return response.json();
