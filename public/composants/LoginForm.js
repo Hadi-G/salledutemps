@@ -56,18 +56,23 @@ class LoginForm extends React.Component {
     return (
         <div>
             {redirection}
-            <Title/>
+            <header className="bar bar-nav">
+              <Link className="icon icon-close pull-right" to="/"></Link>
+              <h1 className="title" id="title2">Login</h1>
+            </header>
+            <div className="content">
+              <div className="form-login">
               <form onSubmit={this.handleSubmit}>
                 <label>
-                  Email:
-                  <input type="text" placeholder="adresse email" name="email" value={this.state.email} onChange={this.handleChange1} />
+                  <input type="email" placeholder="Email" name="email" value={this.state.email} onChange={this.handleChange1} />
                 </label>
                 <label>
-                  Mot de passe:
-                  <input type="password" placeholder="mot de passe" name="password" value={this.state.password} onChange={this.handleChange2} />
+                  <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleChange2} />
                 </label>
-                  <input type="submit" value="Se connecter" />
+                  <input type="submit" className="submit" value="Se connecter" />
               </form>
+            </div>
+          </div>
         </div>
     );
   }

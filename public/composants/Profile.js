@@ -17,16 +17,18 @@ class Profile extends React.Component {
       <div>
         <Title/>
         <div>
-          <div className="img-profil">
-            <Link to="/rdv"> <button id="rdv">rdv</button></Link>
-          </div>
+          <div>
+            <div className="img-profil">
+              <Link to="/rdv"> <button id="rdv">RDV</button></Link>
+            </div>
           </div>
           <div className="description">
-            <h8>Salle du Temps</h8>
-            <p>Chief Executive Officer  : Pierre Matthieu Louis<br/>
-            Chief Technologie Officer : Willy Savetier</p>
+              <h8>Salle du Temps</h8>
+              <p>Chief Executive Officer  : Pierre Matthieu Louis<br/>
+              Chief Technologie Officer : Willy Savetier</p>
           </div>
-            <NavRedux/>
+        <NavRedux/>
+        </div>
 
             <nav className="bar bar-tab">
               <Link className="tab-item" to="/">

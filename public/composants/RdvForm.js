@@ -31,12 +31,8 @@ class RdvForm extends React.Component {
   }
 
   handleSubmit(event){
-    console.log(this.state.startDate._d);
-    console.log(this.state.rdv);
-    console.log(this.state.activite);
-    //Créer une route associer rdvForm
-
-    fetch(serverPath+'/rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
+    var formatDate = new Date(this.state.startDate.format("L"));
+    fetch(serverPath+'/rdv?date='+formatDate+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
       method: 'get'
       }).then(function(response) {
       }).then(function(err) {
@@ -59,17 +55,16 @@ class RdvForm extends React.Component {
 
         <header className="bar bar-nav">
             <Link className="icon icon-close pull-right" to="/profile"></Link>
-            <h1 className="title">Rendez-vous</h1>
+            <h1 className="title" id="title2">Rendez-vous</h1>
         </header>
-          <div className="form-color">
-            <div className="form-rdv">
-                  <form onSubmit={this.handleSubmit}>
-                    <label className="datepicker">
-                      <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
+            <div> <br/><br/><br/><br/>
+                  <form onSubmit={this.handleSubmit} className="form-rdv">
+                    <label className="datepicker" >
+                      <DatePicker className="datePicker" selected={this.state.startDate} onChange={this.handleChange} disabledKeyboardNavigation withPortal />
                     </label>
                     <label>
                       <select onChange={this.hourChange}>
-                        <option value="Heure de rendez-vous"></option>
+                        <option value="" disabled selected hidden>Heure de rendez-vous</option>
                         <option value="9H00">9H00</option><option value="9H30">9H30</option>
                         <option value="10H00">10H00</option><option value="10H30">10H30</option>
                         <option value="11H00">11H00</option><option value="11H30">11H30</option>
@@ -87,7 +82,7 @@ class RdvForm extends React.Component {
                     </label>
                     <label>
                       <select onChange={this.activityChange}>
-                        <option value="Activite"></option>
+                        <option value=""disabled selected hidden>Activite</option>
                         <option value="X-Body1">X-Body 1</option>
                         <option value="X-Body2">X-Body 2</option>
                         <option value="Elliptique">Elliptique</option>
@@ -96,11 +91,10 @@ class RdvForm extends React.Component {
                       </select>
                     </label>
                   <button type='submit' className="form-btn">
-                    Soumettre le rendez-vous
+                    Soumettre
                   </button>
                 </form>
             </div>
-        </div>
       </div>
     );
   }

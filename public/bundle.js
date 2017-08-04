@@ -49150,23 +49150,38 @@ var LoginForm = function (_React$Component) {
         'div',
         null,
         redirection,
-        React.createElement(Title, null),
         React.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
+          'header',
+          { className: 'bar bar-nav' },
+          React.createElement(Link, { className: 'icon icon-close pull-right', to: '/' }),
           React.createElement(
-            'label',
-            null,
-            'Email:',
-            React.createElement('input', { type: 'text', placeholder: 'adresse email', name: 'email', value: this.state.email, onChange: this.handleChange1 })
-          ),
+            'h1',
+            { className: 'title', id: 'title2' },
+            'Login'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'content' },
           React.createElement(
-            'label',
-            null,
-            'Mot de passe:',
-            React.createElement('input', { type: 'password', placeholder: 'mot de passe', name: 'password', value: this.state.password, onChange: this.handleChange2 })
-          ),
-          React.createElement('input', { type: 'submit', value: 'Se connecter' })
+            'div',
+            { className: 'form-login' },
+            React.createElement(
+              'form',
+              { onSubmit: this.handleSubmit },
+              React.createElement(
+                'label',
+                null,
+                React.createElement('input', { type: 'email', placeholder: 'Email', name: 'email', value: this.state.email, onChange: this.handleChange1 })
+              ),
+              React.createElement(
+                'label',
+                null,
+                React.createElement('input', { type: 'password', placeholder: 'Password', name: 'password', value: this.state.password, onChange: this.handleChange2 })
+              ),
+              React.createElement('input', { type: 'submit', className: 'submit', value: 'Se connecter' })
+            )
+          )
         )
       );
     }
@@ -49282,7 +49297,7 @@ var Objectif = function (_React$Component) {
         */
         React.createElement(
           'div',
-          { className: 'content' },
+          { id: 'imgObj', className: 'content' },
           React.createElement(
             'h3',
             { className: 'tobj' },
@@ -49355,17 +49370,21 @@ var Succes = function (_React$Component) {
           React.createElement(Link, { className: 'icon icon-close pull-right', to: '/' }),
           React.createElement(
             'h1',
-            { className: 'title' },
+            { className: 'title', id: 'title2' },
             'Succes'
           )
         ),
         React.createElement(
           'div',
-          { className: 'detail' },
+          { className: 'content' },
           React.createElement(
-            'p',
-            { className: 'content-padded' },
-            'Selon une \xE9tude am\xE9ricaine de l\'universit\xE9 George Washington publi\xE9 dans Diabetes Care, montre que si, apr\xE8s un repas, on marche de mani\xE8re plut\xF4t soutenue pendant un quart d\'heure, notre taux de sucre dans le sang va se mettre \xE0 baisser, et que les effets de cette baisse durent pas moins de 24 heures ! Ce qui permet une meilleure sensibilit\xE9 \xE0 l\'insuline donc aide vos muscle \xE0 consommer vos sucres dans le sang et in\xE9luctablement un perdre plus facilement de la mati\xE8re grasse.'
+            'div',
+            { className: 'detail' },
+            React.createElement(
+              'p',
+              { className: 'content-padded' },
+              'Selon une \xE9tude am\xE9ricaine de l\'universit\xE9 George Washington publi\xE9 dans Diabetes Care, montre que si, apr\xE8s un repas, on marche de mani\xE8re plut\xF4t soutenue pendant un quart d\'heure, notre taux de sucre dans le sang va se mettre \xE0 baisser, et que les effets de cette baisse durent pas moins de 24 heures ! Ce qui permet une meilleure sensibilit\xE9 \xE0 l\'insuline donc aide vos muscle \xE0 consommer vos sucres dans le sang et in\xE9luctablement un perdre plus facilement de la mati\xE8re grasse.'
+            )
           )
         )
       );
@@ -49422,36 +49441,40 @@ var Profile = function (_React$Component) {
           null,
           React.createElement(
             'div',
-            { className: 'img-profil' },
+            null,
             React.createElement(
-              Link,
-              { to: '/rdv' },
-              ' ',
+              'div',
+              { className: 'img-profil' },
               React.createElement(
-                'button',
-                { id: 'rdv' },
-                'rdv'
+                Link,
+                { to: '/rdv' },
+                ' ',
+                React.createElement(
+                  'button',
+                  { id: 'rdv' },
+                  'RDV'
+                )
               )
             )
-          )
-        ),
-        React.createElement(
-          'div',
-          { className: 'description' },
-          React.createElement(
-            'h8',
-            null,
-            'Salle du Temps'
           ),
           React.createElement(
-            'p',
-            null,
-            'Chief Executive Officer  : Pierre Matthieu Louis',
-            React.createElement('br', null),
-            'Chief Technologie Officer : Willy Savetier'
-          )
+            'div',
+            { className: 'description' },
+            React.createElement(
+              'h8',
+              null,
+              'Salle du Temps'
+            ),
+            React.createElement(
+              'p',
+              null,
+              'Chief Executive Officer  : Pierre Matthieu Louis',
+              React.createElement('br', null),
+              'Chief Technologie Officer : Willy Savetier'
+            )
+          ),
+          React.createElement(NavRedux, null)
         ),
-        React.createElement(NavRedux, null),
         React.createElement(
           'nav',
           { className: 'bar bar-tab' },
@@ -49554,10 +49577,15 @@ var Nav = function (_React$Component) {
     value: function render() {
       var rdv = [];
       for (var i = 0; i < this.state.rdvList.length; i++) {
+        var date = new Date(this.state.rdvList[i].date);
+        console.log(this.state.rdvList[i].date);
+        console.log(date);
+        var options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+        var dateStr = date.toLocaleDateString('fr-FR', options);
         rdv.unshift(React.createElement(
           'li',
-          { className: 'rdvNav' },
-          this.state.rdvList[i].date,
+          { className: 'table-view-cell' },
+          dateStr,
           ' - ',
           this.state.rdvList[i].heure,
           ' : ',
@@ -49600,7 +49628,7 @@ var Nav = function (_React$Component) {
           { className: 'rdvList' },
           React.createElement(
             'ul',
-            null,
+            { className: 'table-view' },
             rdv
           )
         )
@@ -49704,12 +49732,8 @@ var RdvForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      console.log(this.state.startDate._d);
-      console.log(this.state.rdv);
-      console.log(this.state.activite);
-      //Créer une route associer rdvForm
-
-      fetch(serverPath + '/rdv?date=' + this.state.startDate._d + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
+      var formatDate = new Date(this.state.startDate.format("L"));
+      fetch(serverPath + '/rdv?date=' + formatDate + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
         method: 'get'
       }).then(function (response) {}).then(function (err) {});
       event.preventDefault();
@@ -49734,202 +49758,211 @@ var RdvForm = function (_React$Component) {
           _react2.default.createElement(Link, { className: 'icon icon-close pull-right', to: '/profile' }),
           _react2.default.createElement(
             'h1',
-            { className: 'title' },
+            { className: 'title', id: 'title2' },
             'Rendez-vous'
           )
         ),
         _react2.default.createElement(
           'div',
-          { className: 'form-color' },
+          null,
+          ' ',
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement('br', null),
           _react2.default.createElement(
-            'div',
-            { className: 'form-rdv' },
+            'form',
+            { onSubmit: this.handleSubmit, className: 'form-rdv' },
             _react2.default.createElement(
-              'form',
-              { onSubmit: this.handleSubmit },
+              'label',
+              { className: 'datepicker' },
+              _react2.default.createElement(_reactDatepicker2.default, { className: 'datePicker', selected: this.state.startDate, onChange: this.handleChange, disabledKeyboardNavigation: true, withPortal: true })
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
               _react2.default.createElement(
-                'label',
-                { className: 'datepicker' },
-                _react2.default.createElement(_reactDatepicker2.default, { selected: this.state.startDate, onChange: this.handleChange })
-              ),
-              _react2.default.createElement(
-                'label',
-                null,
+                'select',
+                { onChange: this.hourChange },
                 _react2.default.createElement(
-                  'select',
-                  { onChange: this.hourChange },
-                  _react2.default.createElement('option', { value: 'Heure de rendez-vous' }),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '9H00' },
-                    '9H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '9H30' },
-                    '9H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '10H00' },
-                    '10H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '10H30' },
-                    '10H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '11H00' },
-                    '11H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '11H30' },
-                    '11H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '12H00' },
-                    '12H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '12H30' },
-                    '12H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '13H00' },
-                    '13H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '13H30' },
-                    '13H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '14H00' },
-                    '14H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '14H30' },
-                    '14H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '15H00' },
-                    '15H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '15H30' },
-                    '15H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '16H00' },
-                    '16H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '16H30' },
-                    '16H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '17H00' },
-                    '17H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '17H30' },
-                    '17H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '18H00' },
-                    '18H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '18H30' },
-                    '18H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '19H00' },
-                    '19H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '19H30' },
-                    '19H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '20H00' },
-                    '20H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '20H30' },
-                    '20H30'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '21H00' },
-                    '21H00'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: '21H30' },
-                    '21H30'
-                  )
-                )
-              ),
-              _react2.default.createElement(
-                'label',
-                null,
+                  'option',
+                  { value: '', disabled: true, selected: true, hidden: true },
+                  'Heure de rendez-vous'
+                ),
                 _react2.default.createElement(
-                  'select',
-                  { onChange: this.activityChange },
-                  _react2.default.createElement('option', { value: 'Activite' }),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'X-Body1' },
-                    'X-Body 1'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'X-Body2' },
-                    'X-Body 2'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Elliptique' },
-                    'Elliptique'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'MonteMarche' },
-                    'Monte Marche'
-                  ),
-                  _react2.default.createElement(
-                    'option',
-                    { value: 'Rameur' },
-                    'Rameur'
-                  )
+                  'option',
+                  { value: '9H00' },
+                  '9H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '9H30' },
+                  '9H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '10H00' },
+                  '10H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '10H30' },
+                  '10H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '11H00' },
+                  '11H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '11H30' },
+                  '11H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '12H00' },
+                  '12H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '12H30' },
+                  '12H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '13H00' },
+                  '13H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '13H30' },
+                  '13H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '14H00' },
+                  '14H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '14H30' },
+                  '14H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '15H00' },
+                  '15H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '15H30' },
+                  '15H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '16H00' },
+                  '16H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '16H30' },
+                  '16H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '17H00' },
+                  '17H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '17H30' },
+                  '17H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '18H00' },
+                  '18H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '18H30' },
+                  '18H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '19H00' },
+                  '19H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '19H30' },
+                  '19H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '20H00' },
+                  '20H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '20H30' },
+                  '20H30'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '21H00' },
+                  '21H00'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: '21H30' },
+                  '21H30'
                 )
-              ),
-              _react2.default.createElement(
-                'button',
-                { type: 'submit', className: 'form-btn' },
-                'Soumettre le rendez-vous'
               )
+            ),
+            _react2.default.createElement(
+              'label',
+              null,
+              _react2.default.createElement(
+                'select',
+                { onChange: this.activityChange },
+                _react2.default.createElement(
+                  'option',
+                  { value: '', disabled: true, selected: true, hidden: true },
+                  'Activite'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'X-Body1' },
+                  'X-Body 1'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'X-Body2' },
+                  'X-Body 2'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'Elliptique' },
+                  'Elliptique'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'MonteMarche' },
+                  'Monte Marche'
+                ),
+                _react2.default.createElement(
+                  'option',
+                  { value: 'Rameur' },
+                  'Rameur'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'button',
+              { type: 'submit', className: 'form-btn' },
+              'Soumettre'
             )
           )
         )

@@ -79,7 +79,7 @@ class Objectif extends React.Component {
         </div>
       </div>
       */
-      <div className="content">
+        <div id="imgObj" className="content">
           <h3 className='tobj'>Objectif du jour</h3>
           <h6 className="obj">{this.state.objectif.objectif}</h6>
             <div className="centerBtn">

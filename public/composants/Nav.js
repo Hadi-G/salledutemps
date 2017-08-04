@@ -13,10 +13,10 @@ class Nav extends React.Component {
     fetch(serverPath+'/rdv?prenom='+this.props.prenom+"&nom="+this.props.nom, {
         method: 'get'
     }).then(function(response) {
-    	console.log("response :"+response);
+    	//console.log("response :"+response);
         return response.json();
     }).then(function(obj) {
-        console.log(obj);
+        //console.log(obj);
         myComponent.setState({
           rdvList: obj
          });
@@ -26,7 +26,12 @@ class Nav extends React.Component {
   render() {
   	var rdv = [];
 	for(var i=0 ; i<this.state.rdvList.length ; i++){
-		rdv.unshift(<li className="rdvNav">{this.state.rdvList[i].date} - {this.state.rdvList[i].heure} : {this.state.rdvList[i].activite} </li>);
+    var date = new Date(this.state.rdvList[i].date);
+    console.log(this.state.rdvList[i].date);
+    console.log(date);
+    var options={weekday: "long", year: "numeric", month: "long", day: "numeric"};
+    var dateStr = date.toLocaleDateString('fr-FR', options);
+    rdv.unshift(<li className="table-view-cell">{dateStr} - {this.state.rdvList[i].heure} : {this.state.rdvList[i].activite} </li>);
 	}
 
     return (
@@ -45,12 +50,12 @@ class Nav extends React.Component {
 				  </ul>
 				</div>
 			</nav>
-			<div className="rdvList">
-	        	<ul>
-	            {rdv}
-	          </ul>
-	       </div>
-       </div>
+    			<div className="rdvList">
+    	        	<ul className="table-view">
+    	            {rdv}
+    	          </ul>
+    	    </div>
+      </div>
     );
   }
 }
