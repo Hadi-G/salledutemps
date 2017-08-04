@@ -6,6 +6,7 @@ class Nav extends React.Component {
   constructor() {
     super();
     this.state= {rdvList : []};
+    
   }
 
   componentDidMount(){
@@ -23,10 +24,15 @@ class Nav extends React.Component {
     });
   }
 
+
+
+
+
   render() {
   	var rdv = [];
 	for(var i=0 ; i<this.state.rdvList.length ; i++){
-		rdv.unshift(<li className="rdvNav">{this.state.rdvList[i].date} - {this.state.rdvList[i].heure} : {this.state.rdvList[i].activite} </li>);
+		rdv.unshift(<li className="rdvNav">{this.state.rdvList[i].date} - {this.state.rdvList[i].heure} : {this.state.rdvList[i].activite}</li>);
+
 	}
 
     return (

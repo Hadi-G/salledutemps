@@ -33358,7 +33358,7 @@ var App = function (_React$Component) {
     value: function render() {
       return React.createElement(
         'div',
-        null,
+        { className: 'content' },
         React.createElement(Title, null),
         React.createElement(Objectif, null),
         React.createElement(
@@ -49152,21 +49152,25 @@ var LoginForm = function (_React$Component) {
         redirection,
         React.createElement(Title, null),
         React.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
+          'div',
+          { className: 'content' },
           React.createElement(
-            'label',
-            null,
-            'Email:',
-            React.createElement('input', { type: 'text', placeholder: 'adresse email', name: 'email', value: this.state.email, onChange: this.handleChange1 })
-          ),
-          React.createElement(
-            'label',
-            null,
-            'Mot de passe:',
-            React.createElement('input', { type: 'password', placeholder: 'mot de passe', name: 'password', value: this.state.password, onChange: this.handleChange2 })
-          ),
-          React.createElement('input', { type: 'submit', value: 'Se connecter' })
+            'form',
+            { onSubmit: this.handleSubmit },
+            React.createElement(
+              'label',
+              null,
+              'Email:',
+              React.createElement('input', { type: 'text', placeholder: 'adresse email', name: 'email', value: this.state.email, onChange: this.handleChange1 })
+            ),
+            React.createElement(
+              'label',
+              null,
+              'Mot de passe:',
+              React.createElement('input', { type: 'password', placeholder: 'mot de passe', name: 'password', value: this.state.password, onChange: this.handleChange2 })
+            ),
+            React.createElement('input', { type: 'submit', value: 'Se connecter' })
+          )
         )
       );
     }
@@ -49530,6 +49534,7 @@ var Nav = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).call(this));
 
     _this.state = { rdvList: [] };
+
     return _this;
   }
 
@@ -49561,8 +49566,7 @@ var Nav = function (_React$Component) {
           ' - ',
           this.state.rdvList[i].heure,
           ' : ',
-          this.state.rdvList[i].activite,
-          ' '
+          this.state.rdvList[i].activite
         ));
       }
 
@@ -49704,12 +49708,8 @@ var RdvForm = function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(event) {
-      console.log(this.state.startDate._d);
-      console.log(this.state.rdv);
-      console.log(this.state.activite);
-      //Créer une route associer rdvForm
-
-      fetch(serverPath + '/rdv?date=' + this.state.startDate._d + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
+      var formatDate = new Date(this.state.startDate.format('L'));
+      fetch(serverPath + '/rdv?date=' + formatDate + '&heure=' + this.state.rdv + '&activite=' + this.state.activite + '&prenom=' + this.props.prenom + "&nom=" + this.props.nom + "&telephone=" + this.props.telephone, {
         method: 'get'
       }).then(function (response) {}).then(function (err) {});
       event.preventDefault();
@@ -49748,9 +49748,12 @@ var RdvForm = function (_React$Component) {
               'form',
               { onSubmit: this.handleSubmit },
               _react2.default.createElement(
-                'label',
+                'button',
                 { className: 'datepicker' },
-                _react2.default.createElement(_reactDatepicker2.default, { selected: this.state.startDate, onChange: this.handleChange })
+                _react2.default.createElement(_reactDatepicker2.default, { selected: this.state.startDate, onChange: this.handleChange,
+
+                  withPortal: true
+                })
               ),
               _react2.default.createElement(
                 'label',

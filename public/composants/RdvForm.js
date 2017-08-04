@@ -11,16 +11,25 @@ var Redirect = require('react-router').Redirect
 class RdvForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {startDate : moment(), rdv:'', activite:'', redirect:''};
+
+    this.state = {startDate : moment(), rdv:'', activite:'', redirect:'', isOpen:''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.hourChange = this.hourChange.bind(this);
     this.activityChange = this.activityChange.bind(this);
+    this.toggleCalendar = this.toggleCalendar.bind(this);
   }
 
   handleChange(date){
     this.setState({startDate:date});
+    this.toggleCalendar();
 }
+
+  toggleCalendat(e){
+    e && e.preventDefault();
+    this.setState({isOpen: !this.state.isOpen});
+  }
+
 
   hourChange(event){
     this.setState({rdv:event.target.value});
@@ -31,12 +40,8 @@ class RdvForm extends React.Component {
   }
 
   handleSubmit(event){
-    console.log(this.state.startDate._d);
-    console.log(this.state.rdv);
-    console.log(this.state.activite);
-    //Créer une route associer rdvForm
-
-    fetch(serverPath+'/rdv?date='+this.state.startDate._d+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
+    var formatDate = new Date(this.state.startDate.format('L'));
+    fetch(serverPath+'/rdv?date='+formatDate+'&heure='+this.state.rdv+'&activite='+this.state.activite+'&prenom='+this.props.prenom+"&nom="+this.props.nom+"&telephone="+this.props.telephone, {
       method: 'get'
       }).then(function(response) {
       }).then(function(err) {
@@ -65,7 +70,11 @@ class RdvForm extends React.Component {
             <div className="form-rdv">
                   <form onSubmit={this.handleSubmit}>
                     <label className="datepicker">
-                      <DatePicker selected={this.state.startDate} onChange={this.handleChange}/>
+                      <DatePicker selected={this.state.startDate} onChange={this.handleChange}
+                      disabledKeyboardNavigation
+
+                        withPortal
+                      />
                     </label>
                     <label>
                       <select onChange={this.hourChange}>

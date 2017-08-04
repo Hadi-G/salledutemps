@@ -15,7 +15,7 @@ class Profile extends React.Component {
   render() {
     return (
       <div>
-        <Title/>
+        <Title />
         <div>
           <div className="img-profil">
             <Link to="/rdv"> <button id="rdv">rdv</button></Link>
@@ -26,7 +26,7 @@ class Profile extends React.Component {
             <p>Chief Executive Officer  : Pierre Matthieu Louis<br/>
             Chief Technologie Officer : Willy Savetier</p>
           </div>
-            <NavRedux/>
+            <NavRedux />
 
             <nav className="bar bar-tab">
               <Link className="tab-item" to="/">

@@ -56,7 +56,8 @@ class LoginForm extends React.Component {
     return (
         <div>
             {redirection}
-            <Title/>
+            <Title />
+              <div className="content">
               <form onSubmit={this.handleSubmit}>
                 <label>
                   Email:
@@ -68,6 +69,7 @@ class LoginForm extends React.Component {
                 </label>
                   <input type="submit" value="Se connecter" />
               </form>
+              </div>
         </div>
     );
   }
